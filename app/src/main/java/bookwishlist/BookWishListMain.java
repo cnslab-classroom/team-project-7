@@ -17,16 +17,17 @@ public class BookWishListMain {
             sc.nextLine(); // 버퍼에 남아 있는 개행문자('\n') 제거
 
             switch (input) {
-                case 1:
+                case 1: {
                     System.out.print("추가할 카테고리 이름을 입력하세요: ");
                     String name = sc.nextLine();
                     service.addCategory(name);
                     break;
-                case 2:
-                    System.out.println("=== 카테고리 목록 ===");
+                }
+                case 2: {
                     service.printCategories();
                     break;
-                case 3:
+                }
+                case 3: {
                     System.out.println("추가할 책 이름을 입력하세요: ");
                     String bookName = sc.nextLine();
                     System.out.printf("\"%s\"의 저자를 입력하세요: ", bookName);
@@ -40,24 +41,33 @@ public class BookWishListMain {
                         System.out.println("책 추가 실패!");
                     }
                     break;
-                case 4:
+                }
+                case 4: {
                     System.out.println("삭제할 책 이름을 입력하세요: ");
                     String name = sc.nextLine();
                     service.deleteBook(name);
                     break;
-                case 5:
-                    System.out.println("=== 책 목록 ===");
-                    service.printBooks();
+                }
+                case 5: {
+                    System.out.println("책 목록을 볼 카테고리 이름을 입력하세요:");
+                    String name = sc.nextLine();
+                    service.printBooks(name);
                     break;
-                case 6:
+                }
+                case 6: {
                     System.out.println("프로그램을 종료합니다.");
                     isRun = false;
                     break;
-                default:
+                }
+                default: {
                     System.out.println("잘못된 선택입니다.");
                     break;
+                }
+                    
             }
         }
+
+        sc.close();
     }
 
     // 메뉴 출력
