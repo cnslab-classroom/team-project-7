@@ -1,11 +1,8 @@
 package bookwishlist;
 
-import java.util.Scanner; // 입력을 위한 Scanner 클래스 import
-
 public class BookWishListMain {
     public static void main(String[] args) {
         BookService service = new BookService();
-        Scanner sc = new Scanner(System.in);
 
         System.out.println("=== 북 위시리스트 프로그램 ===");
 
@@ -13,14 +10,11 @@ public class BookWishListMain {
         boolean isRun = true;
         while(isRun) {
             printMenu();
-            input = sc.nextInt();
-            sc.nextLine(); // 버퍼에 남아 있는 개행문자('\n') 제거
+            input = Input.getInt();
 
             switch (input) {
                 case 1: {
-                    System.out.print("추가할 카테고리 이름을 입력하세요: ");
-                    String name = sc.nextLine();
-                    service.addCategory(name);
+                    service.addCategory(Input.getString("추가할 카테고리 이름을 입력하세요: "));
                     break;
                 }
                 case 2: {
@@ -28,12 +22,9 @@ public class BookWishListMain {
                     break;
                 }
                 case 3: {
-                    System.out.print("추가할 책 이름을 입력하세요: ");
-                    String bookName = sc.nextLine();
-                    System.out.printf("\"%s\"의 저자를 입력하세요: ", bookName);
-                    String author = sc.nextLine();
-                    System.out.printf("\"%s\"의 카테고리를 입력하세요: ", bookName);
-                    String categoryName = sc.nextLine();
+                    String bookName = Input.getString("추가할 책 이름을 입력하세요: ");
+                    String author = Input.getString("\""+bookName + "\" 의 저자를 입력하세요: ");
+                    String categoryName = Input.getString("\""+bookName + "\" 카테고리를 입력하세요: ");
                     
                     // 카테고리가 비어있을 경우 default로 설정
                     if(categoryName.equals("")) {
@@ -41,21 +32,19 @@ public class BookWishListMain {
                     }
 
                     if(service.addBook(bookName, author, categoryName)) {
-                        System.out.printf("\"%s\"이(가) 카테고리 [%s]에 추가되었습니다\n.",bookName, categoryName);
+                        System.out.printf("\"%s\"이(가) 카테고리 [%s]에 추가되었습니다.\n",bookName, categoryName);
                     } else {
                         System.out.println("책 추가 실패!");
                     }
                     break;
                 }
                 case 4: {
-                    System.out.println("삭제할 책 이름을 입력하세요: ");
-                    String name = sc.nextLine();
+                    String name = Input.getString("삭제할 책 이름을 입력하세요: ");
                     service.deleteBook(name);
                     break;
                 }
                 case 5: {
-                    System.out.println("책 목록을 볼 카테고리 이름을 입력하세요:");
-                    String name = sc.nextLine();
+                    String name = Input.getString("책 목록을 볼 카테고리 이름을 입력하세요:");
                     service.printBooks(name);
                     break;
                 }
@@ -71,8 +60,6 @@ public class BookWishListMain {
                     
             }
         }
-
-        sc.close();
     }
 
     // 메뉴 출력
