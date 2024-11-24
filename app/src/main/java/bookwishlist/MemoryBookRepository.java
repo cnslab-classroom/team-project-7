@@ -14,15 +14,18 @@ public class MemoryBookRepository {
         categoriesStore.put("default", new Category("default"));
     }
 
+    // 책 저장
     public void saveBook(Book book) {
         book.setId(id++);
         booksStore.put(book.getId(), book);
     }
 
+    // 카테고리 저장
     public void saveCategory(String name) {
         categoriesStore.put(name, new Category(name));
     }
 
+    // 책 삭제
     public void removeBook(Book book) {
         // 책을 삭제할 경우 모든 카테고리에서 해당 책을 삭제
         for(String key : categoriesStore.keySet()) {
@@ -31,10 +34,6 @@ public class MemoryBookRepository {
 
         // 책을 삭제
         booksStore.remove(book.getId());
-    }
-
-    public void updateBook(Book book) {
-        
     }
 
     // 모든 카테고리 인스턴스 반환
@@ -70,6 +69,4 @@ public class MemoryBookRepository {
         }
         return result;
     }
-
-
 }

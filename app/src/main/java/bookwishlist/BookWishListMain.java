@@ -44,7 +44,7 @@ public class BookWishListMain {
                     break;
                 }
                 case 5: {
-                    String name = Input.getString("책 목록을 볼 카테고리 이름을 입력하세요:");
+                    String name = Input.getString("책 목록을 볼 카테고리 이름을 입력하세요: ");
                     service.printBooks(name);
                     break;
                 }

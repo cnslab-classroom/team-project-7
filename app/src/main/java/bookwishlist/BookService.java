@@ -56,13 +56,21 @@ public class BookService {
 
 
     public void printBooks(String categoryName) {
+        Category category = repository.findCategoryByName(categoryName);
+        if(category == null) {
+            System.out.println("해당 카테고리가 존재하지 않습니다.");
+            return;
+        }
+
+        category.printBooks();
     }
 
     // 카테고리에 책을 추가하는 메소드
     private boolean addBookToCategory(Book book, String categoryName) {
         Category category = repository.findCategoryByName(categoryName);
         
-        if(category == null || category.findByBook(book) != null) { // 해당하는 카테고리가 없거나 카테고리에 이미 책이 존재하는 경우, 추가하지 않고 실패했다는 뜻으로 false 반환
+        // 해당하는 카테고리가 없거나 카테고리에 이미 책이 존재하는 경우, 추가하지 않고 실패했다는 뜻으로 false 반환
+        if(category == null || category.findByBook(book) != null) { 
             return false;
         }
 
