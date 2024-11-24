@@ -48,7 +48,7 @@ public class BookWishListMain {
     }
 
     // 메뉴 출력
-    public static void printMenu() {
+    private static void printMenu() {
         System.out.println();
         System.out.println("[메뉴]");
         System.out.println("1. 카테고리 추가");
@@ -92,7 +92,7 @@ public class BookWishListMain {
 
     private static void RunMenu5(BookService service) {
         String categoryName = Input.getString("책 목록을 볼 카테고리 이름을 입력하세요: ");
-        
+
         // 카테고리가 비어있을 경우 default로 설정
         if(categoryName.equals("")) {
             categoryName = "default";
