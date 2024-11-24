@@ -34,10 +34,19 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "bookwishlist.App"
+    mainClass = "bookwishlist.BookWishListMain"
+}
+
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in` // Gradle은 기본적으로 표준입력처리 x, 직접 연결해주어야 함
+}
+
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
 }
 
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+
