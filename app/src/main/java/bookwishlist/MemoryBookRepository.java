@@ -15,11 +15,12 @@ public class MemoryBookRepository {
     }
 
     public void saveBook(Book book) {
-
+        book.setId(id++);
+        booksStore.put(book.getId(), book);
     }
 
     public void saveCategory(String name) {
-        categoriesStore.put(name, new Category("name"));
+        categoriesStore.put(name, new Category(name));
     }
 
     public void removeBook(Book book) {
@@ -35,5 +36,15 @@ public class MemoryBookRepository {
 
     public Category findCategoryByName(String name) {
         return categoriesStore.get(name);
+    }
+
+    public Book findBook(Book book) {
+        for (Long key : booksStore.keySet()) {
+            Book target = booksStore.get(key);
+            if ((target.getTitle()).equals(book.getTitle()) && (target.getAuthor()).equals(book.getAuthor())) {
+                return target;
+            }
+        }
+        return null;
     }
 }

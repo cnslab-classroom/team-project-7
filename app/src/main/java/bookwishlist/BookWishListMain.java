@@ -28,15 +28,20 @@ public class BookWishListMain {
                     break;
                 }
                 case 3: {
-                    System.out.println("추가할 책 이름을 입력하세요: ");
+                    System.out.print("추가할 책 이름을 입력하세요: ");
                     String bookName = sc.nextLine();
                     System.out.printf("\"%s\"의 저자를 입력하세요: ", bookName);
                     String author = sc.nextLine();
                     System.out.printf("\"%s\"의 카테고리를 입력하세요: ", bookName);
                     String categoryName = sc.nextLine();
+                    
+                    // 카테고리가 비어있을 경우 default로 설정
+                    if(categoryName.equals("")) {
+                        categoryName = "default";
+                    }
 
                     if(service.addBook(bookName, author, categoryName)) {
-                        System.out.printf("\"%s\"이(가) 카테고리 [%s]에 추가되었습니다.",bookName, categoryName);
+                        System.out.printf("\"%s\"이(가) 카테고리 [%s]에 추가되었습니다\n.",bookName, categoryName);
                     } else {
                         System.out.println("책 추가 실패!");
                     }
