@@ -30,9 +30,30 @@ public class BookService {
         return addBookToCategory(oldBook, categoryName);
     }
 
-
     public void deleteBook(String bookName) {
+        List<Book> books = repository.findByBookTitle(bookName);
+        if (books.isEmpty()) {
+            System.out.println("해당 책이 존재하지 않습니다.");
+            return;
+        }
+        
+        // 책이 하나만 존재할 경우 삭제 (굳이 뭘 삭제할 것인지 물어볼 필요가 없음)
+        if(books.size() == 1) {
+            repository.removeBook(books.get(0));
+            System.out.println("책이 삭제되었습니다.");
+            return;
+        }
+
+        // 같은 이름의 책이 여러개 존재할 경우 삭제할 책을 선택하도록 함
+        for(int i = 0;i<books.size();i++) {
+            System.out.println((i+1) + ". " + books.get(i));
+        }
+        System.out.print("삭제할 책의 번호를 입력하세요: ");
+        int num = Input.getInt();
+        repository.removeBook(books.get(num-1));
+        System.out.println("책이 삭제되었습니다.");
     }
+
 
     public void printBooks(String categoryName) {
     }
