@@ -80,7 +80,7 @@ public class BookWishListMain {
         System.out.println("4. 책 삭제");
         System.out.println("5. 책 목록 보기");
         System.out.println("6. 종료");
-        System.out.println("선택: ");
+        System.out.print("선택: ");
     }
     
 }
