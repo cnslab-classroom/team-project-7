@@ -5,8 +5,8 @@ public class Book{
     private String title; 
     private String author; 
 
-    public Book(long id, String title, String author) {
-        this.id = id;
+    public Book(String title, String author) {
+       
         this.title = title;
         this.author = author;
     }
@@ -36,6 +36,12 @@ public class Book{
         this.author = author;
     }
 
-   
+    public String toString() {
+        return "Book{" +
+                "id= " + id +
+                ", 제목 = '" + title + '\'' +
+                ", 저자 = '" + author + '\'' +
+                '}';
+    }
 }
 
