@@ -36,13 +36,13 @@ public class DiskBookRepository implements BookRepository{
             data.put("id", id);
 
             gson.toJson(data, writer);
-            System.out.println("데이터가 JSON 파일에 저장되었습니다.");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     // JSON 파일에서 데이터를 불러오는 메서드
+    @SuppressWarnings("unchecked")
     private void loadDataFromFile() {
         Gson gson = new Gson();
         try (FileReader reader = new FileReader(FILE_PATH)) {
@@ -52,9 +52,8 @@ public class DiskBookRepository implements BookRepository{
             // 각 맵을 적절한 타입으로 캐스팅하여 로드
             booksStore = (Map<Long, Book>) data.get("booksStore");
             categoriesStore = (Map<String, Category>) data.get("categoriesStore");
-            id = (Long) data.get("id");
-
-            System.out.println("데이터가 JSON 파일에서 불러와졌습니다.");
+            // data.get("id")가 Double, Integer, 또는 다른 숫자 타입일 수 있기에 Number로 캐스팅 후 변환
+            id = ((Number) data.get("id")).longValue();
         } 
         catch (FileNotFoundException e) { // 파일이 존재하지 않을 경우 초기화
             booksStore = new HashMap<>();
