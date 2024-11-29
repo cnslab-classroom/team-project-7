@@ -3,7 +3,7 @@ package bookwishlist;
 import java.util.List;
 
 public class BookService {
-    private final MemoryBookRepository repository = new MemoryBookRepository();
+    private final DiskBookRepository repository = new DiskBookRepository();
 
     public void addCategory(String categoryName) {
         repository.saveCategory(categoryName);
@@ -63,6 +63,10 @@ public class BookService {
         }
 
         category.printBooks();
+    }
+
+    public void exit() {
+        repository.saveDataToFile();
     }
 
     // 카테고리에 책을 추가하는 메소드

@@ -34,7 +34,7 @@ public class BookWishListMain {
                     break;
                 }
                 case 6: {
-                    System.out.println("프로그램을 종료합니다.");
+                    RunMenu6(service);
                     isRun = false;
                     break;
                 }
@@ -99,5 +99,10 @@ public class BookWishListMain {
         }
 
         service.printBooks(categoryName);
+    }
+
+    private static void RunMenu6(BookService service) {
+        service.exit();
+        System.out.println("프로그램을 종료합니다.");
     }
 }
