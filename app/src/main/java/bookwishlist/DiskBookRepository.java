@@ -20,7 +20,7 @@ public class DiskBookRepository implements BookRepository{
     private static Long id;
     private static final String FILE_PATH = "data.json";
 
-    DiskBookRepository() {
+    public DiskBookRepository() {
         loadDataFromFile();
     }
 

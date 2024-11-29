@@ -10,7 +10,7 @@ public class MemoryBookRepository implements BookRepository {
     private static Map<String,Category> categoriesStore = new HashMap<>();
     private static Long id = 0L;
 
-    MemoryBookRepository() {
+    public MemoryBookRepository() {
         categoriesStore.put("default", new Category("default"));
     }
 
