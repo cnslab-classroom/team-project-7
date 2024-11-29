@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MemoryBookRepository {
+public class MemoryBookRepository implements BookRepository {
     private static Map<Long,Book> booksStore = new HashMap<>();
     private static Map<String,Category> categoriesStore = new HashMap<>();
     private static Long id = 0L;
@@ -15,17 +15,20 @@ public class MemoryBookRepository {
     }
 
     // 책 저장
+    @Override
     public void saveBook(Book book) {
         book.setId(id++);
         booksStore.put(book.getId(), book);
     }
 
     // 카테고리 저장
+    @Override
     public void saveCategory(String name) {
         categoriesStore.put(name, new Category(name));
     }
 
     // 책 삭제
+    @Override
     public void removeBook(Book book) {
         // 책을 삭제할 경우 모든 카테고리에서 해당 책을 삭제
         for(String key : categoriesStore.keySet()) {
@@ -37,16 +40,19 @@ public class MemoryBookRepository {
     }
 
     // 모든 카테고리 인스턴스 반환
+    @Override
     public List<Category> findAllCategories() {
         return new ArrayList<>(categoriesStore.values());
     }
 
     // 카테고리 이름으로 카테고리 인스턴스 찾기
+    @Override
     public Category findCategoryByName(String name) {
         return categoriesStore.get(name);
     }
 
     // 책제목과 저자 둘다 같은 책 찾기 (동일한 책 찾기)
+    @Override
     public Book findBook(Book book) {
         for (Long key : booksStore.keySet()) {
             Book target = booksStore.get(key);
@@ -58,6 +64,7 @@ public class MemoryBookRepository {
     }
 
     // 책 제목으로 해당하는 책 모두 찾기
+    @Override
     public List<Book> findByBookTitle(String title) {
         List<Book> result = new ArrayList<>(); // 제목이 같은 책이 존재할 수 있음으로 검색 결과를 리스트에 담아 반환
 
