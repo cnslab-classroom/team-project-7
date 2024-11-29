@@ -76,4 +76,8 @@ public class MemoryBookRepository implements BookRepository {
         }
         return result;
     }
+
+    @Override
+    public void saveDataToFile() {
+    }
 }

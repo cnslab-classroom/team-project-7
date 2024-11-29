@@ -10,4 +10,5 @@ public interface BookRepository {
     Category findCategoryByName(String name);
     Book findBook(Book book);
     List<Book> findByBookTitle(String title);
+    void saveDataToFile();
 }

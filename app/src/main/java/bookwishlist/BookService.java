@@ -3,7 +3,7 @@ package bookwishlist;
 import java.util.List;
 
 public class BookService {
-    private final DiskBookRepository repository = new DiskBookRepository();
+    private final BookRepository repository = new DiskBookRepository();
 
     public void addCategory(String categoryName) {
         repository.saveCategory(categoryName);
