@@ -1,5 +1,8 @@
 package bookwishlist;
 
+import bookwishlist.io.Input;
+import bookwishlist.service.BookService;
+
 public class BookWishListMain {
     public static void main(String[] args) {
         BookService service = new BookService();

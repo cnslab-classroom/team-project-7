@@ -1,6 +1,9 @@
-package bookwishlist;
+package bookwishlist.repository;
 
 import java.util.List;
+
+import bookwishlist.model.Book;
+import bookwishlist.model.Category;
 
 public interface BookRepository {
     void saveBook(Book book);

@@ -1,4 +1,4 @@
-package bookwishlist;
+package bookwishlist.io;
 
 import java.util.Scanner; // 입력을 위한 Scanner 클래스 import
 

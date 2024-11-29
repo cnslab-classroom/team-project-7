@@ -1,4 +1,4 @@
-package bookwishlist;
+package bookwishlist.model;
 
 public class Book{
     private long id; 

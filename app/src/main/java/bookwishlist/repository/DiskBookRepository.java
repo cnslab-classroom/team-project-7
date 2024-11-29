@@ -1,4 +1,4 @@
-package bookwishlist;
+package bookwishlist.repository;
 
 
 import com.google.gson.Gson;
@@ -14,13 +14,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import bookwishlist.model.Book;
+import bookwishlist.model.Category;
+
+
+
 public class DiskBookRepository implements BookRepository{
     private static Map<Long,Book> booksStore;
     private static Map<String,Category> categoriesStore;
     private static Long id;
     private static final String FILE_PATH = "data.json";
 
-    DiskBookRepository() {
+    public DiskBookRepository() {
         loadDataFromFile();
     }
 

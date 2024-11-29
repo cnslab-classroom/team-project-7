@@ -1,16 +1,19 @@
-package bookwishlist;
+package bookwishlist.repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import bookwishlist.model.Book;
+import bookwishlist.model.Category;
+
 public class MemoryBookRepository implements BookRepository {
     private static Map<Long,Book> booksStore = new HashMap<>();
     private static Map<String,Category> categoriesStore = new HashMap<>();
     private static Long id = 0L;
 
-    MemoryBookRepository() {
+    public MemoryBookRepository() {
         categoriesStore.put("default", new Category("default"));
     }
 

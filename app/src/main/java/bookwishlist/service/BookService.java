@@ -1,6 +1,12 @@
-package bookwishlist;
+package bookwishlist.service;
 
 import java.util.List;
+import bookwishlist.repository.BookRepository;
+import bookwishlist.repository.DiskBookRepository;
+import bookwishlist.model.Book;
+import bookwishlist.model.Category;
+import bookwishlist.io.Input;
+
 
 public class BookService {
     private final BookRepository repository = new DiskBookRepository();
