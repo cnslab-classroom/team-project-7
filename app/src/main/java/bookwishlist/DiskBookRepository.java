@@ -49,9 +49,9 @@ public class DiskBookRepository implements BookRepository{
             Type dataType = new TypeToken<Map<String, Object>>(){}.getType();
             Map<String, Object> data = gson.fromJson(reader, dataType);
 
-            // 각 맵을 적절한 타입으로 캐스팅하여 로드
-            booksStore = (Map<Long, Book>) data.get("booksStore");
-            categoriesStore = (Map<String, Category>) data.get("categoriesStore");
+            booksStore = gson.fromJson(gson.toJson(data.get("booksStore")), new TypeToken<Map<Long, Book>>(){}.getType());
+            categoriesStore = gson.fromJson(gson.toJson(data.get("categoriesStore")), new TypeToken<Map<String, Category>>(){}.getType());
+
             // data.get("id")가 Double, Integer, 또는 다른 숫자 타입일 수 있기에 Number로 캐스팅 후 변환
             id = ((Number) data.get("id")).longValue();
         } 
@@ -127,5 +127,17 @@ public class DiskBookRepository implements BookRepository{
             }
         }
         return result;
+    }
+
+    private void printBooks(Map<Long, Book> map) {
+        for (Map.Entry<Long, Book> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+
+    private void printCategories(Map<String, Category> map) {
+        for (Map.Entry<String, Category> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
     }
 }
