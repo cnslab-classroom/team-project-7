@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public class MemoryBookRepository implements BookRepository {
-    private static Map<Long,Book> booksStore = new HashMap<>();
-    private static Map<String,Category> categoriesStore = new HashMap<>();
-    private static Long id = 0L;
+    protected static Map<Long,Book> booksStore = new HashMap<>();
+    protected static Map<String,Category> categoriesStore = new HashMap<>();
+    protected static Long id = 0L;
 
     public MemoryBookRepository() {
         categoriesStore.put("default", new Category("default"));
